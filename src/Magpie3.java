@@ -45,6 +45,11 @@ public class Magpie3
 		{
 			response = "Tell me more about your family.";
 		}
+		else if (findKeyword(statement, "dog") >= 0
+				|| findKeyword(statement, "cat") >= 0)
+		{
+			response = "Tell me more about your pets";
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -82,20 +87,24 @@ public class Magpie3
 		// word
 		while (psn >= 0)
 		{
+			System.out.print("PSN: " + psn + " |"); //PRINTS PSN COLUMN IN CHART
 			// Find the string of length 1 before and after
 			// the word
 			String before = " ", after = " ";
 			if (psn > 0)
 			{
 				before = phrase.substring(psn - 1, psn);
+
 			}
+			System.out.print(" BEFORE: \"" + before + "\"|"); //PRINTS BEFORE COLUMN IN CHART
 			if (psn + goal.length() < phrase.length())
 			{
 				after = phrase.substring(
 						psn + goal.length(),
 						psn + goal.length() + 1);
-			}
 
+			}
+			System.out.println(" AFTER: \"" + after + "\" |"); //PRINTS AFTER COLUMN IN CHART
 			// If before and after aren't letters, we've
 			// found the word
 			if (((before.compareTo("a") < 0) || (before
@@ -112,6 +121,8 @@ public class Magpie3
 			psn = phrase.indexOf(goal, psn + 1);
 
 		}
+
+
 
 		return -1;
 	}
